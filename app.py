@@ -1,5 +1,41 @@
-from flask import flask
+from flask import Flask
 app = Flask(__name__)
 
+
+# Root
+@app.route('/')
+def index():
+	pass
+
+# Category Index
+@app.route('/categories')
+def categoryIndex():
+	pass
+
+# Item Index
+@app.route('/items')
+def itemIndex():
+	pass
+
+# Item New
+@app.route('/items/new')
+def itemNew():
+	pass
+
+# Item Show
+@app.route('/items/<int:item_id>')
+def itemShow():
+	pass
+
+# Item Edit
+@app.route('/items/<int:item_id>/edit')
+def itemEdit():
+	pass
+
+# Item Delete
+@app.route('/items/<int:item_id>/delete')
+def itemDelete():
+	pass
+
 if __name__ == '__main__':
-	app.run()
+	app.run(host='0.0.0.0', port = 3000)
