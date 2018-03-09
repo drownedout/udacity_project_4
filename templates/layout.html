@@ -1,0 +1,25 @@
+{# _app/templates/layout.html_ #}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+    {% block body %}
+        <header>
+	        <div class="logo-container">
+    		</div>
+        	<nav>
+        		<ul class="nav-list">
+        			<li></li>
+        			<li></li>
+        			<button>
+        				Login
+        			</button>
+        		</ul>
+        	</nav>
+        </header>
+    {% endblock %}
+    </body>
+</html>
