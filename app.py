@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 app = Flask(__name__)
 
 from flask_assets import Bundle, Environment
@@ -37,9 +37,17 @@ def categoryItemIndex():
 	return render_template('categoryItems/index.html', categoryItems=categoryItems)
 
 # Item New
-@app.route('/items/new')
+@app.route('/items/new', methods=['GET', 'POST'])
 def categoryItemNew():
-	pass
+	categories = session.query(Category).all()
+	if request.method == 'POST':
+		newCategoryItem = CategoryItem(name=request.form['name'], description=request.form['description'],
+			category_id = request.form['category_id'])
+		session.add(newCategoryItem)
+		session.commit()
+		return redirect(url_for('categoryItemShow', category_id=newCategoryItem.category_id, item_id = newCategoryItem.id))
+	else:
+		return render_template('categoryItems/new.html', categories=categories)
 
 # Item Show
 @app.route('/categories/<int:category_id>/<int:item_id>')

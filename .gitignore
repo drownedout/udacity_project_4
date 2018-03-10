@@ -1,3 +1,4 @@
 .webassets-cache
 __pycache__
+categoryitem.db
 .gitignore
