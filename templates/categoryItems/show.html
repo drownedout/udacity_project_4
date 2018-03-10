@@ -11,7 +11,7 @@
     			<div class="box-title-container">
 	    			<h3 class="box-title">{{categoryItem.name}}</h3>
     			</div>
-    			<button class="btn">Back</button>
+    			<button class="btn"><a href="{{url_for('categoryItemIndex')}}">Back</a></button>
     		</div>
     		<div class="box-main">
                 <div class="box-text-container">
@@ -20,7 +20,7 @@
                   </p>
               </div>
               <div class="button-row">
-                <button class="btn btn-edit">Edit</button>
+                <button class="btn btn-edit"><a href="{{url_for('categoryItemEdit',category_id = categoryItem.category_id, item_id = categoryItem.id)}}">Edit</a></button>
                 <button class="btn btn-delete">Delete</button>
               </div>
     		</div>

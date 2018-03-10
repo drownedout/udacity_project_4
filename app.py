@@ -53,12 +53,26 @@ def categoryItemNew():
 @app.route('/categories/<int:category_id>/<int:item_id>')
 def categoryItemShow(category_id, item_id):
 	categoryItem = session.query(CategoryItem).filter_by(id=item_id).one()
-	return render_template('categoryItems/show.html', categoryItem = categoryItem)
+	return render_template('categoryItems/show.html', category_id = category_id, item_id = item_id, categoryItem = categoryItem)
 
 # Item Edit
-@app.route('/items/<int:item_id>/edit')
-def categoryItemEdit():
-	pass
+@app.route('/categories/<int:category_id>/<int:item_id>/edit', methods=['GET', 'POST'])
+def categoryItemEdit(category_id, item_id):
+	editCategoryItem = session.query(CategoryItem).filter_by(id=item_id).one()
+	categories = session.query(Category).all()
+
+	if request.method == 'POST':
+		if requst.form['name']:
+			editCategoryItem.name = request.form['name']
+		if requst.form['description']:
+			editCategoryItem.description = request.form['description']
+		if requst.form['category_id']:
+			editCategoryItem.category_id = request.form['category_id']
+		session.add(editCategoryItem)
+		session.commit()
+		return redirect(url_for('categoryItemShow', category_id=editCategoryItem.category_id, item_id = editCategoryItem.id))
+	else:
+		return render_template('categoryItems/edit.html', category_id=category_id, item_id = item_id, editCategoryItem = editCategoryItem, categories=categories)
 
 # Item Delete
 @app.route('/items/<int:item_id>/delete')

@@ -8,6 +8,11 @@ a {
 	text-decoration: none;
 }
 
+a,
+.btn {
+	transition: .2s ease-in-out;
+}
+
 header {
 	border-bottom: 1px solid #ebebeb;
 	padding: 1rem 2rem;
@@ -75,11 +80,24 @@ nav {
 	background: transparent;
 	border: 1px solid #3c3b3b;
 	border-radius: 20px;
-	transition: .3s ease-in-out;
 }
 
 .btn:hover {
 	cursor: pointer;
+}
+
+.btn-login,
+.btn-blue,
+.btn-edit > a {
+	color: #fff;
+}
+
+.btn-delete > a {
+	color: #ff0000;
+}
+
+.btn-transparent > a {
+	color: #3645fc;
 }
 
 .btn-login {
@@ -124,7 +142,14 @@ nav {
 .btn-transparent {
 	border: 1px solid #3645fc;
 	color: #3645fc;
-	font-size: .75rem;
+}
+
+.btn-transparent:hover{
+	border: 1px solid #1dabff;
+}
+
+.btn-transparent:hover > a {
+	color: #1dabff;
 }
 
 /** Box **/

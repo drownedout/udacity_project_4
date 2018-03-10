@@ -1,7 +1,7 @@
-{# _app/templates/categoryItems/new.html_ #}
+{# _app/templates/categoryItems/edit.html_ #}
 
 {% extends "layout.html" %}
-{% block title %}New Item{% endblock %}
+{% block title %}Edit Item{% endblock %}
 {% block body %}
     {{ super() }}
     <main>
@@ -9,18 +9,18 @@
     	<div class="box">
     		<div class="box-header">
     			<div class="box-title-container">
-	    			<h3 class="box-title">Add a new item</h3>
+	    			<h3 class="box-title">Edit {{editCategoryItem.name}}</h3>
     			</div>
     		</div>
     		<div class="box-main">
-    			<form action="{{url_for('categoryItemNew')}}" method="POST">
+    			<form action="{{url_for('categoryItemEdit', category_id = editCategoryItem.category_id, item_id=editCategoryItem.id)}}" method="POST">
                     <div class="field">
                         <label>Name</label>
-                        <input type="text" name="name">
+                        <input type="text" name="name" placeholder="{{editCategoryItem.name}}">
                     </div>
                     <div class="field">
                         <label>Description</label>
-                        <textarea name="description"></textarea>
+                        <textarea name="description" placeholder="{{editCategoryItem.description}}"></textarea>
                     </div>
                     <div class="field">
                         <label>Select a category</label>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="button-row">
                         <input type="submit" name="Submit" class="btn btn-blue">
-                        <button class="btn"><a href="{{url_for('categoryItemIndex')}}">Back</a></button>
+                        <button class="btn"><a href="{{url_for('categoryItemShow',category_id = editCategoryItem.category_id, item_id = editCategoryItem.id)}}">Back</a></button>
                     </div>
                 </form>
     		</div>
