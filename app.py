@@ -1,17 +1,27 @@
 from flask import Flask, render_template
-from flask_assets import Bundle, Environment
 app = Flask(__name__)
+
+from flask_assets import Bundle, Environment
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from database_setup import Base, Category, CategoryItem
+
+engine = create_engine('sqlite:///categoryitem.db')
+Base.metadata.bind = engine
+
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
 
 # Assets
 assets = Environment(app)
 css = Bundle('css/style.css', 'css/normalize.css', output='gen/main.css')
-
 assets.register('main', css)
 
 # Root
 @app.route('/')
-def index():
-	return render_template('index.html')
+def home():
+	category = session.query(Category).first()
+	return render_template('home.html', category=category)
 
 # Category Index
 @app.route('/categories')

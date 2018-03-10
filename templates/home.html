@@ -1,4 +1,4 @@
-{# _app/templates/index.html_ #}
+{# _app/templates/home.html_ #}
 
 {% extends "layout.html" %}
 {% block title %}Home{% endblock %}
@@ -17,7 +17,7 @@
     		<div class="box-main flex">
     			<div class="category-list">
     				<ul>
-    					<li>Example Category</li>
+    					<li>{{category.name}}</li>
     				</ul>
     			</div>
     			<div class="item-list">
