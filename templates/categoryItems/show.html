@@ -1,0 +1,22 @@
+{# _app/templates/home.html_ #}
+
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+    {{ super() }}
+    <main>
+        <div class="container">
+    	<div class="box">
+    		<div class="box-header">
+    			<div class="box-title-container">
+	    			<h3 class="box-title">{{categoryItem.name}}</h3>
+    			</div>
+    			<button class="btn btn-transparent">Add Item</button>
+    		</div>
+    		<div class="box-main flex">
+    		
+    		</div>
+    	</div>
+        </div>
+    </main>
+{% endblock %}

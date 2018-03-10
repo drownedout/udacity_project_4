@@ -42,9 +42,10 @@ def categoryItemNew():
 	pass
 
 # Item Show
-@app.route('/items/<int:item_id>')
-def categoryItemShow():
-	pass
+@app.route('/categories/<int:category_id>/<int:item_id>')
+def categoryItemShow(category_id, item_id):
+	categoryItem = session.query(CategoryItem).filter_by(id=item_id).one()
+	return render_template('categoryItems/show.html', categoryItem = categoryItem)
 
 # Item Edit
 @app.route('/items/<int:item_id>/edit')
