@@ -1,7 +1,7 @@
-{# _app/templates/category/index.html_ #}
+{# _app/templates/category/show.html_ #}
 
 {% extends "layout.html" %}
-{% block title %}Category{% endblock %}
+{% block title %}{{category.name}}{% endblock %}
 {% block body %}
     {{ super() }}
     <main>
@@ -11,13 +11,13 @@
     			<div class="box-title-container">
 	    			<h3 class="box-title">{{category.name}}</h3>
     			</div>
-    			<button class="btn btn-transparent"><a href="{{url_for('categoryItemNew')}}">Add Item</a></button>
+    			<button class="btn btn-transparent"><a href="{{url_for('categoryItem.categoryItemNew')}}">Add Item</a></button>
     		</div>
     		<div class="box-main flex">
     			<div class="item-list">
     				<ul>
                         {% for item in categoryItems %}
-        					<li class="list-items"><a href="{{url_for('categoryItemShow', category_id = item.category_id, item_id = item.id)}}">{{item.name}}</a></li>
+        					<li class="list-items"><a href="{{url_for('categoryItem.categoryItemShow', category_id = item.category_id, item_id = item.id)}}">{{item.name}}</a></li>
                         {% endfor %}
     				</ul>
     			</div>

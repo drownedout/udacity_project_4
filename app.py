@@ -1,16 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-app = Flask(__name__)
-
 from flask_assets import Bundle, Environment
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Category, CategoryItem
 
-engine = create_engine('sqlite:///categoryitem.db')
-Base.metadata.bind = engine
+# Importing routes
+from views.category import category
+from views.category_item import categoryItem
 
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
+# Intializing app, blueprints
+app = Flask(__name__)
+app.register_blueprint(category)
+app.register_blueprint(categoryItem)
 
 # Assets
 assets = Environment(app)
@@ -24,73 +25,6 @@ def home():
 	categoryItems = session.query(CategoryItem).limit(8).all()
 	return render_template('home.html', categories=categories, categoryItems=categoryItems)
 
-# Category Index
-@app.route('/categories')
-def categoryIndex():
-	categories = session.query(Category).all()
-	return render_template('categories/index.html', categories=categories)
-
-# Category Show
-@app.route('/categories/<int:category_id>')
-def categoryShow(category_id):
-	category = session.query(Category).filter_by(id=category_id).one()
-	categoryItems = session.query(CategoryItem).filter_by(category_id=category.id).all()
-	return render_template('categories/show.html', category_id = category_id, category=category, categoryItems=categoryItems)
-
-# Item Index
-@app.route('/items')
-def categoryItemIndex():
-	categoryItems = session.query(CategoryItem).all()
-	return render_template('categoryItems/index.html', categoryItems=categoryItems)
-
-# Item New
-@app.route('/items/new', methods=['GET', 'POST'])
-def categoryItemNew():
-	categories = session.query(Category).all()
-	if request.method == 'POST':
-		newCategoryItem = CategoryItem(name=request.form['name'], description=request.form['description'],
-			category_id = request.form['category_id'])
-		session.add(newCategoryItem)
-		session.commit()
-		return redirect(url_for('categoryItemShow', category_id=newCategoryItem.category_id, item_id = newCategoryItem.id))
-	else:
-		return render_template('categoryItems/new.html', categories=categories)
-
-# Item Show
-@app.route('/categories/<int:category_id>/<int:item_id>')
-def categoryItemShow(category_id, item_id):
-	categoryItem = session.query(CategoryItem).filter_by(id=item_id).one()
-	return render_template('categoryItems/show.html', category_id = category_id, item_id = item_id, categoryItem = categoryItem)
-
-# Item Edit
-@app.route('/categories/<int:category_id>/<int:item_id>/edit', methods=['GET', 'POST'])
-def categoryItemEdit(category_id, item_id):
-	editCategoryItem = session.query(CategoryItem).filter_by(id=item_id).one()
-	categories = session.query(Category).all()
-
-	if request.method == 'POST':
-		if request.form['name']:
-			editCategoryItem.name = request.form['name']
-		if request.form['description']:
-			editCategoryItem.description = request.form['description']
-		if request.form['category_id']:
-			editCategoryItem.category_id = request.form['category_id']
-		session.add(editCategoryItem)
-		session.commit()
-		return redirect(url_for('categoryItemShow', category_id=editCategoryItem.category_id, item_id = editCategoryItem.id))
-	else:
-		return render_template('categoryItems/edit.html', category_id=category_id, item_id = item_id, editCategoryItem = editCategoryItem, categories=categories)
-
-# Item Delete
-@app.route('/categories/<int:category_id>/<int:item_id>/delete', methods=['GET', 'POST'])
-def categoryItemDelete(category_id, item_id):
-	deletedCategoryItem = session.query(CategoryItem).filter_by(id=item_id).one()
-	if request.method == 'POST':
-		session.delete(deletedCategoryItem)
-		session.commit()
-		return redirect(url_for('categoryItemIndex'))
-	else:
-		return render_template('categoryItems/show.html', category_id=category_id, item_id = item_id, CategoryItem = deletedCategoryItem)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port = 3000)

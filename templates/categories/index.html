@@ -11,13 +11,13 @@
     			<div class="box-title-container">
 	    			<h3 class="box-title">Categories</h3>
     			</div>
-    			<button class="btn btn-transparent"><a href="{{url_for('categoryItemNew')}}">Add Item</a></button>
+    			<button class="btn btn-transparent"><a href="{{url_for('categoryItem.categoryItemNew')}}">Add Item</a></button>
     		</div>
     		<div class="box-main flex">
     			<div class="category-list">
     				<ul>
                         {% for category in categories %}
-        					<li class="list-items"><a href="{{url_for('categoryShow', category_id = category.id)}}">{{category.name}}</a></li>
+        					<li class="list-items"><a href="{{url_for('category.categoryShow', category_id = category.id)}}">{{category.name}}</a></li>
                         {% endfor %}
     				</ul>
     			</div>

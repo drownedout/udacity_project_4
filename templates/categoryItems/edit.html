@@ -13,7 +13,7 @@
     			</div>
     		</div>
     		<div class="box-main">
-    			<form action="{{url_for('categoryItemEdit', category_id = editCategoryItem.category_id, item_id=editCategoryItem.id)}}" method="POST">
+    			<form action="{{url_for('categoryItem.categoryItemEdit', category_id = editCategoryItem.category_id, item_id=editCategoryItem.id)}}" method="POST">
                     <div class="field">
                         <label>Name</label>
                         <input type="text" name="name" placeholder="{{editCategoryItem.name}}">
@@ -32,7 +32,7 @@
                     </div>
                     <div class="button-row">
                         <input type="submit" name="Submit" class="btn btn-blue">
-                        <button class="btn"><a href="{{url_for('categoryItemShow',category_id = editCategoryItem.category_id, item_id = editCategoryItem.id)}}">Back</a></button>
+                        <button class="btn"><a href="{{url_for('categoryItem.categoryItemShow',category_id = editCategoryItem.category_id, item_id = editCategoryItem.id)}}">Back</a></button>
                     </div>
                 </form>
     		</div>

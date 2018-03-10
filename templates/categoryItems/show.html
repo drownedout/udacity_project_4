@@ -1,7 +1,7 @@
 {# _app/templates/home.html_ #}
 
 {% extends "layout.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}{{categoryItem.name}}{% endblock %}
 {% block body %}
     {{ super() }}
     <main>
@@ -11,7 +11,7 @@
     			<div class="box-title-container">
 	    			<h3 class="box-title">{{categoryItem.name}}</h3>
     			</div>
-    			<button class="btn"><a href="{{url_for('categoryItemIndex')}}">Back</a></button>
+    			<button class="btn"><a href="{{url_for('categoryItem.categoryItemIndex')}}">Back</a></button>
     		</div>
     		<div class="box-main">
                 <div class="box-text-container">
@@ -20,8 +20,8 @@
                   </p>
               </div>
               <div class="button-row">
-                <button class="btn btn-edit"><a href="{{url_for('categoryItemEdit',category_id = categoryItem.category_id, item_id = categoryItem.id)}}">Edit</a></button>
-                <form class="delete-form" action="{{ url_for('categoryItemDelete',category_id = categoryItem.category_id, item_id=categoryItem.id)}}" method = 'post'>
+                <button class="btn btn-edit"><a href="{{url_for('categoryItem.categoryItemEdit',category_id = categoryItem.category_id, item_id = categoryItem.id)}}">Edit</a></button>
+                <form class="delete-form" action="{{ url_for('categoryItem.categoryItemDelete',category_id = categoryItem.category_id, item_id=categoryItem.id)}}" method = 'post'>
                     <input class="btn btn-delete" type="submit" value="Delete">
                 </form>
               </div>
