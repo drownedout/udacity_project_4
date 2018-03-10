@@ -1,6 +1,12 @@
 from flask import Flask, render_template
+from flask_assets import Bundle, Environment
 app = Flask(__name__)
 
+# Assets
+assets = Environment(app)
+css = Bundle('css/style.css', output='gen/main.css')
+
+assets.register('main', css)
 
 # Root
 @app.route('/')

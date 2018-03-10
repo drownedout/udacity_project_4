@@ -4,6 +4,9 @@
 <html lang="en">
     <head>
         <title>{% block title %}{% endblock %}</title>
+        {% assets "main" %}
+            <link rel="stylesheet" href="{{ ASSET_URL }}" />
+        {% endassets %}
     </head>
     <body>
     {% block body %}
