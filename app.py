@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 # Assets
 assets = Environment(app)
-css = Bundle('css/style.css', output='gen/main.css')
+css = Bundle('css/style.css', 'css/normalize.css', output='gen/main.css')
 
 assets.register('main', css)
 

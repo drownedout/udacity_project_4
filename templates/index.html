@@ -5,7 +5,28 @@
 {% block body %}
     {{ super() }}
     <main>
-    	<div>
+        <div class="container">
+    	<div class="box">
+    		<div class="box-header">
+    			<div class="box-title-container">
+	    			<h3 class="box-title">Categories</h3>
+	    			<h3 class="box-title">Latest Items</h3>
+    			</div>
+    			<button class="btn btn-transparent">Add Item</button>
+    		</div>
+    		<div class="box-main flex">
+    			<div class="category-list">
+    				<ul>
+    					<li>Example Category</li>
+    				</ul>
+    			</div>
+    			<div class="item-list">
+    				<ul>
+    					<li>Example Item</li>
+    				</ul>
+    			</div>
+    		</div>
     	</div>
+        </div>
     </main>
 {% endblock %}
