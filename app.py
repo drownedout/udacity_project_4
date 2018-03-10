@@ -33,7 +33,8 @@ def categoryIndex():
 # Item Index
 @app.route('/items')
 def categoryItemIndex():
-	pass
+	categoryItems = session.query(CategoryItem).all()
+	return render_template('categoryItems/index.html', categoryItems=categoryItems)
 
 # Item New
 @app.route('/items/new')
