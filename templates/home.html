@@ -17,12 +17,16 @@
     		<div class="box-main flex">
     			<div class="category-list">
     				<ul>
-    					<li>{{category.name}}</li>
+                        {% for category in categories %}
+        					<li class="list-items">{{category.name}}</li>
+                        {% endfor %}
     				</ul>
     			</div>
     			<div class="item-list">
     				<ul>
-    					<li>Example Item</li>
+    					{% for item in categoryItems %}
+                            <li class="list-items">{{item.name}}</li>
+                        {% endfor %}
     				</ul>
     			</div>
     		</div>

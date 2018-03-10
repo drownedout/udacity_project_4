@@ -20,8 +20,9 @@ assets.register('main', css)
 # Root
 @app.route('/')
 def home():
-	category = session.query(Category).first()
-	return render_template('home.html', category=category)
+	categories = session.query(Category).all()
+	categoryItems = session.query(CategoryItem).limit(8).all()
+	return render_template('home.html', categories=categories, categoryItems=categoryItems)
 
 # Category Index
 @app.route('/categories')

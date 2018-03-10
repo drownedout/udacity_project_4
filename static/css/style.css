@@ -63,7 +63,7 @@ nav {
 .box {
 	background-color: #fff;
 	border: 1px solid #ebebeb;
-	margin: 2rem auto;
+	margin: 5rem auto;
 	border-top: 5px solid #3645fc;
 	-webkit-box-shadow: 27px 25px 73px -14px rgba(0,0,0,0.08);
 	-moz-box-shadow: 27px 25px 73px -14px rgba(0,0,0,0.08);
@@ -114,6 +114,10 @@ nav {
 	border-right: 1px solid #ebebeb;
 	width: 30%;
 	margin: 0;
+}
+
+.list-items {
+	margin: 1rem 0rem;
 }
 
 .item-list {
