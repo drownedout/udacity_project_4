@@ -27,31 +27,32 @@ def home():
 # Category Index
 @app.route('/categories')
 def categoryIndex():
-	pass
+	categories = session.query(Category).all()
+	return render_template('categories/index.html', categories=categories)
 
 # Item Index
 @app.route('/items')
-def itemIndex():
+def categoryItemIndex():
 	pass
 
 # Item New
 @app.route('/items/new')
-def itemNew():
+def categoryItemNew():
 	pass
 
 # Item Show
 @app.route('/items/<int:item_id>')
-def itemShow():
+def categoryItemShow():
 	pass
 
 # Item Edit
 @app.route('/items/<int:item_id>/edit')
-def itemEdit():
+def categoryItemEdit():
 	pass
 
 # Item Delete
 @app.route('/items/<int:item_id>/delete')
-def itemDelete():
+def categoryItemDelete():
 	pass
 
 if __name__ == '__main__':

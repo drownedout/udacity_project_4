@@ -1,7 +1,7 @@
-{# _app/templates/home.html_ #}
+{# _app/templates/category/index.html_ #}
 
 {% extends "layout.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Categories{% endblock %}
 {% block body %}
     {{ super() }}
     <main>
@@ -10,7 +10,6 @@
     		<div class="box-header">
     			<div class="box-title-container">
 	    			<h3 class="box-title">Categories</h3>
-	    			<h3 class="box-title">Latest Items</h3>
     			</div>
     			<button class="btn btn-transparent">Add Item</button>
     		</div>
@@ -19,13 +18,6 @@
     				<ul>
                         {% for category in categories %}
         					<li class="list-items"><a href="{{url_for('categoryIndex')}}">{{category.name}}</a></li>
-                        {% endfor %}
-    				</ul>
-    			</div>
-    			<div class="item-list">
-    				<ul>
-    					{% for item in categoryItems %}
-                            <li class="list-items"><a href="">{{item.name}}</a></li>
                         {% endfor %}
     				</ul>
     			</div>

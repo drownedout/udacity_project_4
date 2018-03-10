@@ -52,12 +52,22 @@ nav {
 	background: transparent;
 	border: 1px solid #3c3b3b;
 	border-radius: 20px;
+	transition: .3s ease-in-out;
+}
+
+.btn:hover {
+	cursor: pointer;
 }
 
 .btn-blue {
 	background-color: #6a0efa;
 	border: 1px solid #5403d3;
 	color: #fff;
+}
+
+.btn-blue:hover {
+	background-color: #9659F6;
+	border: 1px solid #7C2CF9;
 }
 
 .box {
