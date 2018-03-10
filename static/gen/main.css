@@ -4,6 +4,10 @@ body {
 	line-height: 1.5;
 }
 
+a {
+	text-decoration: none;
+}
+
 header {
 	border-bottom: 1px solid #ebebeb;
 	padding: 1rem 2rem;
@@ -23,14 +27,23 @@ header {
 	margin: 0 auto;
 }
 
+/** Navbar **/
+
 .logo-container,
 nav {
 	width: 50%;
 }
 
 .logo-container > h1 {
-	color: #1dabff;
 	margin: 0;
+}
+
+.logo-container > h1 > a {
+	color: #1dabff;
+}
+
+.logo-container > h1 > a:hover {
+	color: #75CBFE;
 }
 
 nav {
@@ -46,6 +59,16 @@ nav {
 	display: inline-block;
 	margin: 0 2rem;
 }
+
+.nav-list > li > a {
+	color: #3c3b3b;
+}
+
+.nav-list > li > a:hover {
+	color: #1dabff;
+}
+
+/** Buttons **/
 
 .btn {
 	padding: .5rem 2rem;
@@ -69,6 +92,30 @@ nav {
 	background-color: #9659F6;
 	border: 1px solid #7C2CF9;
 }
+
+.btn-edit {
+	background-color: #1dabff;
+	border: 1px solid #09a0f9;
+	color: #fff;
+}
+
+.btn-edit:hover {
+	background-color: #75CBFE;
+	border: 1px solid #49BBFF;
+}
+
+.btn-delete {
+	border: 1px solid #ff0000;
+	color: #ff0000;
+}
+
+.btn-transparent {
+	border: 1px solid #3645fc;
+	color: #3645fc;
+	font-size: .75rem;
+}
+
+/** Box **/
 
 .box {
 	background-color: #fff;
@@ -102,17 +149,6 @@ nav {
 	margin-left: 0;
 }
 
-.btn-transparent {
-	border: 1px solid #3645fc;
-	color: #3645fc;
-	font-size: .75rem;
-}
-
-.item-list, 
-.category-list {
-	color: #3c3b3b;
-}
-
 .item-list > ul,
 .category-list > ul {
 	padding: 2rem 3rem;
@@ -130,8 +166,34 @@ nav {
 	margin: 1rem 0rem;
 }
 
+.list-items > a {
+		color: #3c3b3b;
+}
+
+.list-items > a:hover {
+		color: #1dabff;
+}
+
 .item-list {
 	width: 70%;
+}
+
+/** Show **/
+
+.box-text-container {
+	padding: 1rem 2rem;
+}
+
+.button-row {
+	border-top: 1px solid #ebebeb;
+}
+
+.button-row > .btn {
+	margin: 1rem 1rem;
+}
+
+.button-row > .btn:first-child {
+	margin-left: 2rem 
 }
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 

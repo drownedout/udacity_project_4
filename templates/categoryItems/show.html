@@ -11,10 +11,18 @@
     			<div class="box-title-container">
 	    			<h3 class="box-title">{{categoryItem.name}}</h3>
     			</div>
-    			<button class="btn btn-transparent">Add Item</button>
+    			<button class="btn">Back</button>
     		</div>
-    		<div class="box-main flex">
-    		
+    		<div class="box-main">
+                <div class="box-text-container">
+        		  <p>
+                    {{categoryItem.description}}      
+                  </p>
+              </div>
+              <div class="button-row">
+                <button class="btn btn-edit">Edit</button>
+                <button class="btn btn-delete">Delete</button>
+              </div>
     		</div>
     	</div>
         </div>

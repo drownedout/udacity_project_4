@@ -14,12 +14,12 @@
         <header>
         	<div class="container flex">
 		        <div class="logo-container">
-		        	<h1>Catalog.io</h1>
+		        	<h1><a href="{{url_for('home')}}">Catalog.io</a></h1>
 	    		</div>
 	        	<nav>
 	        		<ul class="nav-list">
-	        			<li>Items</li>
-	        			<li>Categories</li>
+	        			<li><a href="{{url_for('categoryItemIndex')}}">Items</a></li>
+	        			<li><a href="{{url_for('categoryIndex')}}">Categories</a></li>
 	        			<button class="btn btn-blue">
 	        				Login
 	        			</button>
