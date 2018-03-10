@@ -14,14 +14,26 @@
     		</div>
     		<div class="box-main">
     			<form action="{{url_for('categoryItemNew')}}" method="POST">
-                    <input type="text" name="name">
-                    <textarea name="description"></textarea>
-                    <select name="category_id">
-                        {% for category in categories %}
-                            <option value="{{category.id}}">{{category.name}}</option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" name="Submit" class="btn btn-blue">   
+                    <div class="field">
+                        <label>Name</label>
+                        <input type="text" name="name">
+                    </div>
+                    <div class="field">
+                        <label>Description</label>
+                        <textarea name="description"></textarea>
+                    </div>
+                    <div class="field">
+                        <label>Select a category</label>
+                        <select name="category_id">
+                            {% for category in categories %}
+                                <option value="{{category.id}}">{{category.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="button-row">
+                        <input type="submit" name="Submit" class="btn btn-blue">
+                        <button class="btn">Back</button>
+                    </div>
                 </form>
     		</div>
     	</div>
