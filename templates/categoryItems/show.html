@@ -21,7 +21,9 @@
               </div>
               <div class="button-row">
                 <button class="btn btn-edit"><a href="{{url_for('categoryItemEdit',category_id = categoryItem.category_id, item_id = categoryItem.id)}}">Edit</a></button>
-                <button class="btn btn-delete">Delete</button>
+                <form class="delete-form" action="{{ url_for('categoryItemDelete',category_id = categoryItem.category_id, item_id=categoryItem.id)}}" method = 'post'>
+                    <input class="btn btn-delete" type="submit" value="Delete">
+                </form>
               </div>
     		</div>
     	</div>

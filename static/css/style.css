@@ -265,10 +265,15 @@ form > .button-row {
 	padding-top: 1rem;
 }
 
-form > .button-row > .btn {
+form > .button-row > .btn, .delete-form {
 	display: inline-block;
 }
 
 form > .button-row > .btn:first-child {
 	margin-left: 0;
+}
+
+.delete-form {
+	margin: 0;
+	padding: 0;
 }

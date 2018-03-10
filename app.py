@@ -62,11 +62,11 @@ def categoryItemEdit(category_id, item_id):
 	categories = session.query(Category).all()
 
 	if request.method == 'POST':
-		if requst.form['name']:
+		if request.form['name']:
 			editCategoryItem.name = request.form['name']
-		if requst.form['description']:
+		if request.form['description']:
 			editCategoryItem.description = request.form['description']
-		if requst.form['category_id']:
+		if request.form['category_id']:
 			editCategoryItem.category_id = request.form['category_id']
 		session.add(editCategoryItem)
 		session.commit()
@@ -75,9 +75,15 @@ def categoryItemEdit(category_id, item_id):
 		return render_template('categoryItems/edit.html', category_id=category_id, item_id = item_id, editCategoryItem = editCategoryItem, categories=categories)
 
 # Item Delete
-@app.route('/items/<int:item_id>/delete')
-def categoryItemDelete():
-	pass
+@app.route('/categories/<int:category_id>/<int:item_id>/delete', methods=['GET', 'POST'])
+def categoryItemDelete(category_id, item_id):
+	deletedCategoryItem = session.query(CategoryItem).filter_by(id=item_id).one()
+	if request.method == 'POST':
+		session.delete(deletedCategoryItem)
+		session.commit()
+		return redirect(url_for('categoryItemIndex'))
+	else:
+		return render_template('categoryItems/show.html', category_id=category_id, item_id = item_id, CategoryItem = deletedCategoryItem)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port = 3000)
