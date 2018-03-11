@@ -1,4 +1,4 @@
-{# _app/templates/home.html_ #}
+{# _app/templates/auth/login.html_ #}
 
 {% extends "layout.html" %}
 {% block title %}{{Login}}{% endblock %}
@@ -47,7 +47,7 @@
                             alert("login successful");
                             setTimeout(function(){
                                 window.location.href="/";
-                            },4000)
+                            },1000)
                         } else if (authResult['error']) {
                             console.log(authResult['error'])
                         } else {

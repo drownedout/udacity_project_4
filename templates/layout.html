@@ -25,9 +25,15 @@
 	        		<ul class="nav-list">
 	        			<li><a href="{{url_for('categoryItem.categoryItemIndex')}}">Items</a></li>
 	        			<li><a href="{{url_for('category.categoryIndex')}}">Categories</a></li>
-	        			<button class="btn btn-login">
-	        				<a href="{{url_for('auth.login')}}">Login</a>
-	        			</button>
+                        {% if session['username'] %}
+                            <button class="btn btn-login">
+                                <a href="{{url_for('auth.gdisconnect')}}">Logout</a>
+                            </button>
+                        {% else %}
+    	        			<button class="btn btn-login">
+    	        				<a href="{{url_for('auth.login')}}">Login</a>
+    	        			</button>
+                        {% endif %}
 	        		</ul>
 	        	</nav>
         	</div>

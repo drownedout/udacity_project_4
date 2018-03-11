@@ -82,6 +82,10 @@ nav {
 	border-radius: 20px;
 }
 
+.btn > a {
+	color: #3c3b3b;
+}
+
 .btn:hover {
 	cursor: pointer;
 }
@@ -138,19 +142,19 @@ nav {
 	color: #1dabff;
 }
 
-.btn-login,
-.btn-blue,
-.btn-edit,
-.btn-login > a {
-	color: #fff;
-}
-
 .btn-delete > a {
 	color: #ff0000;
 }
 
 .btn-transparent > a {
 	color: #3645fc;
+}
+
+.btn-login,
+.btn-blue,
+.btn-edit,
+.btn-login > a {
+	color: #fff;
 }
 
 /** Box **/
@@ -277,4 +281,10 @@ form > .button-row > .btn:first-child {
 .delete-form {
 	margin: 0;
 	padding: 0;
+}
+
+/** Logout Box **/
+.logout-main {
+	text-align: center;
+	padding: 2rem 1rem;
 }

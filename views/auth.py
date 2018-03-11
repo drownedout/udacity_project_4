@@ -97,7 +97,7 @@ def gconnect():
 	session['email'] = data['email']
 
 	user_id = getUserID(data['email'])
-	if not user_id:
+	if not user_id or user_id == None:
 		user_id = userNew(session)
 	session['user_id'] = user_id
 
@@ -132,7 +132,7 @@ def gdisconnect():
 		# Reponse indicating to user that session has been disconnected
 		response = make_response(json.dumps('Successfully disconnected'), 200)
 		response.headers['Content-Type'] = 'application/json'
-		return response
+		return render_template('/auth/logout.html')
 	else:
 		# In case something went wrong with disconnecting
 		response = make_response(json.dumps('Failed to disconnect'), 400)

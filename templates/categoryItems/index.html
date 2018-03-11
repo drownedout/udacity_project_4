@@ -11,7 +11,9 @@
     			<div class="box-title-container">
 	    			<h3 class="box-title">Items</h3>
     			</div>
-    			<button class="btn btn-transparent"><a href="{{url_for('categoryItem.categoryItemNew')}}">Add Item</a></button>
+                {% if session['username'] %}
+        			<button class="btn btn-transparent"><a href="{{url_for('categoryItem.categoryItemNew')}}">Add Item</a></button>
+                {% endif %}
     		</div>
     		<div class="box-main flex">
     			<div class="item-list">
