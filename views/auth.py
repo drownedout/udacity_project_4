@@ -90,13 +90,16 @@ def gconnect():
 	userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
 	params = {'access_token': credentials.access_token, 'alt': 'json'}
 	answer = requests.get(userinfo_url, params=params)
+
 	data = answer.json()
 
 	session['username'] = data['name']
 	session['picture'] = data['picture']
 	session['email'] = data['email']
 
-	user_id = getUserID(data['email'])
+	# See if user exists
+	user_id = getUserID(session['email'])
+
 	if not user_id or user_id == None:
 		user_id = userNew(session)
 	session['user_id'] = user_id
@@ -112,14 +115,10 @@ def gdisconnect():
 		response.headers['Content-Type'] = 'application/json'
 		return response
 
-	print(session['username'])
-	print(session)
 	# Execute an HTTP 'GET' request to revoke current token
 	url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
-	print(url)
 	h = httplib2.Http()
 	result = h.request(url, 'GET')[0]
-	print(result)
 
 	if result['status'] == '200':
 		# Reset the user's session
@@ -142,7 +141,6 @@ def gdisconnect():
 # Helper functions
 def userNew(session):
 	newUser = User(name=session['username'], email=session['email'], picture=session['picture'])
-
 	database_session.add(newUser)
 	database_session.commit()
 	user = database_session.query(User).filter_by(id=newUser.id).one()
@@ -155,7 +153,7 @@ def getUserInfo(user_id):
 
 def getUserID(email):
 	try:
-		user = session.query(User).filter_by(email=email).one()
+		user = database_session.query(User).filter_by(email=email).one()
 		return user.id
 	except:
 		return None
