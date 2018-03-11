@@ -9,7 +9,7 @@
     	<div class="box">
     		<div class="box-header">
     			<div class="box-title-container">
-	    			<h3 class="box-title">{{category.name}}</h3>
+	    			<h3 class="box-title"><i class="fas fa-tags text"></i> {{category.name}}</h3>
     			</div>
                 {% if session['username'] %}
         			<button class="btn btn-transparent"><a href="{{url_for('categoryItem.categoryItemNew')}}">Add Item</a></button>

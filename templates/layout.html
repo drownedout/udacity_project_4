@@ -9,6 +9,8 @@
         {% endassets %}
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
         <!-- JQuery -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <!-- Google OAUTH -->
@@ -23,15 +25,15 @@
 	    		</div>
 	        	<nav>
 	        		<ul class="nav-list">
-	        			<li><a href="{{url_for('categoryItem.categoryItemIndex')}}">Items</a></li>
-	        			<li><a href="{{url_for('category.categoryIndex')}}">Categories</a></li>
+	        			<li><a href="{{url_for('categoryItem.categoryItemIndex')}}"><i class="fas fa-archive text"></i>  Items</a></li>
+	        			<li><a href="{{url_for('category.categoryIndex')}}"><i class="fas fa-tags text"></i> Categories</a></li>
                         {% if session['username'] %}
                             <button class="btn btn-login">
-                                <a href="{{url_for('auth.gdisconnect')}}">Logout</a>
+                                <i class="fas fa-unlock-alt white"></i> <a href="{{url_for('auth.gdisconnect')}}">Logout</a>
                             </button>
                         {% else %}
     	        			<button class="btn btn-login">
-    	        				<a href="{{url_for('auth.login')}}">Login</a>
+    	        				<i class="fas fa-lock white"></i> <a href="{{url_for('auth.login')}}">Login</a>
     	        			</button>
                         {% endif %}
 	        		</ul>

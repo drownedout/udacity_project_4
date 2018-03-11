@@ -4,3 +4,4 @@ categoryitem.db
 .gitignore
 keys.py
 secrets.json
+.DS_Store

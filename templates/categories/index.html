@@ -9,17 +9,17 @@
     	<div class="box">
     		<div class="box-header">
     			<div class="box-title-container">
-	    			<h3 class="box-title">Categories</h3>
+	    			<h3 class="box-title"><i class="fas fa-tags text"></i> Categories</h3>
     			</div>
                 {% if session['username'] %}
         			<button class="btn btn-transparent"><a href="{{url_for('categoryItem.categoryItemNew')}}">Add Item</a></button>
                 {% endif %}
     		</div>
     		<div class="box-main flex">
-    			<div class="category-list">
-    				<ul>
+    			<div class="item-list">
+    				<ul class="index-list">
                         {% for category in categories %}
-        					<li class="list-items"><a href="{{url_for('category.categoryShow', category_id = category.id)}}">{{category.name}}</a></li>
+        					<li class="list-items"><a href="{{url_for('category.categoryShow', category_id = category.id)}}"><i class="fas fa-caret-right"></i> {{category.name}}</a></li>
                         {% endfor %}
     				</ul>
     			</div>

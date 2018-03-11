@@ -32,6 +32,15 @@ header {
 	margin: 0 auto;
 }
 
+/** Colors **/
+.white {
+	color: #fff;
+}
+
+.text {
+	color: #3c3b3b
+}
+
 /** Navbar **/
 
 .logo-container,
@@ -80,6 +89,7 @@ nav {
 	background: transparent;
 	border: 1px solid #3c3b3b;
 	border-radius: 20px;
+	outline: none;
 }
 
 .btn > a {
@@ -88,6 +98,11 @@ nav {
 
 .btn:hover {
 	cursor: pointer;
+	border: 1px solid #A6A1A1;
+}
+
+.btn:hover > a {
+	color: #A6A1A1;
 }
 
 .btn-login {
@@ -146,14 +161,35 @@ nav {
 	color: #ff0000;
 }
 
+.btn-delete:hover > a {
+	color: #FF6464;
+}
+
+.btn-delete:hover {
+	border: 1px solid #FF6464;
+}
+
 .btn-transparent > a {
 	color: #3645fc;
 }
 
-.btn-login,
 .btn-blue,
-.btn-edit,
+.btn-login,
+.btn-edit > a {
+	color: #fff;
+}
+
 .btn-login > a {
+	color: #fff;
+}
+
+.btn-edit:hover > a {
+	color: #fff;
+}
+
+.btn-login:hover,
+.btn-blue:hover,
+.btn-login:hover > a {
 	color: #fff;
 }
 
@@ -283,7 +319,34 @@ form > .button-row > .btn:first-child {
 	padding: 0;
 }
 
-/** Logout Box **/
+/** Index **/
+.index-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+.index-list > li {
+	margin: 1rem 1rem 1rem 0;
+	width: 40%;
+}
+
+/** Show **/
+.box-text-container > p {
+	margin-left: 1rem;
+}
+
+/** Login **/
+
+.login-container {
+	text-align: center;
+	padding: 1rem 0 2rem 0;
+}
+
+.google-icon {
+	margin: 1rem auto 0 auto;
+	color: #d34836;
+}
+
+/** Logout **/
 .logout-main {
 	text-align: center;
 	padding: 2rem 1rem;

@@ -9,7 +9,7 @@
     	<div class="box">
     		<div class="box-header">
     			<div class="box-title-container">
-	    			<h3 class="box-title">Items</h3>
+	    			<h3 class="box-title"><i class="fas fa-archive"></i> Items</h3>
     			</div>
                 {% if session['username'] %}
         			<button class="btn btn-transparent"><a href="{{url_for('categoryItem.categoryItemNew')}}">Add Item</a></button>
@@ -17,9 +17,9 @@
     		</div>
     		<div class="box-main flex">
     			<div class="item-list">
-    				<ul>
+    				<ul class="index-list">
     					{% for item in categoryItems %}
-                            <li class="list-items"><a href="{{url_for('categoryItem.categoryItemShow', category_id = item.category_id, item_id = item.id)}}">{{item.name}}</a></li>
+                            <li class="list-items"><a href="{{url_for('categoryItem.categoryItemShow', category_id = item.category_id, item_id = item.id)}}"><i class="fas fa-caret-right"></i> {{item.name}}</a></li>
                         {% endfor %}
     				</ul>
     			</div>

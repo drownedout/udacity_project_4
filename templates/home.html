@@ -9,8 +9,8 @@
     	<div class="box">
     		<div class="box-header">
     			<div class="box-title-container">
-	    			<h3 class="box-title">Categories</h3>
-	    			<h3 class="box-title">Latest Items</h3>
+	    			<h3 class="box-title"><i class="fas fa-tags text"></i> Categories</h3>
+	    			<h3 class="box-title"><i class="fas fa-archive"></i> Latest Items</h3>
     			</div>
                 {% if session['username'] %}
         			<button class="btn btn-transparent"><a href="{{url_for('categoryItem.categoryItemNew')}}">Add Item</a></button>
@@ -20,14 +20,14 @@
     			<div class="category-list">
     				<ul>
                         {% for category in categories %}
-        					<li class="list-items"><a href="{{url_for('category.categoryIndex')}}">{{category.name}}</a></li>
+        					<li class="list-items"><a href="{{url_for('category.categoryIndex')}}"> <i class="fas fa-caret-right"></i> {{category.name}}</a></li>
                         {% endfor %}
     				</ul>
     			</div>
     			<div class="item-list">
     				<ul>
     					{% for item in categoryItems %}
-                            <li class="list-items"><a href="{{url_for('categoryItem.categoryItemShow', category_id = item.category_id, item_id = item.id)}}">{{item.name}}</a></li>
+                            <li class="list-items"><a href="{{url_for('categoryItem.categoryItemShow', category_id = item.category_id, item_id = item.id)}}"><i class="fas fa-caret-right"></i> {{item.name}}</a></li>
                         {% endfor %}
     				</ul>
     			</div>

@@ -14,20 +14,21 @@
         			<button class="btn"><a href="{{url_for('static.home')}}">Back</a></button>
         		</div>
         		<div class="box-main">
-                    
-                </div>
-                <div class="button-row">
                     <!-- Google Login Button -->
-                    <div id="signinButton">
-                      <span class="g-signin"
-                        data-scope="openid email"
-                        data-clientid="{{google_client_id}}"
-                        data-redirecturi="postmessage"
-                        data-accesstype="offline"
-                        data-cookiepolicy="single_host_origin"
-                        data-callback="signInCallback"
-                        data-approvalprompt="force">
-                      </span>
+                    <div class="login-container">
+                        <i class="fab fa-google-plus google-icon fa-10x"></i>
+                        <h1>Sign In With Google</h1>
+                        <div id="signinButton">
+                          <span class="g-signin"
+                            data-scope="openid email"
+                            data-clientid="{{google_client_id}}"
+                            data-redirecturi="postmessage"
+                            data-accesstype="offline"
+                            data-cookiepolicy="single_host_origin"
+                            data-callback="signInCallback"
+                            data-approvalprompt="force">
+                          </span>
+                        </div>
                     </div>
                 </div>
         	</div>
