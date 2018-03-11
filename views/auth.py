@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, request, make_response
+from flask import Blueprint, render_template, session, request, make_response, redirect, url_for
 from oauth2client.client import flow_from_clientsecrets, FlowExchangeError
 from util.keys import google_client_id
 from sqlalchemy import create_engine
@@ -18,14 +18,17 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
+	try:
+		if session['username']:
+			return redirect(url_for('static.home'))
+	except:
 	# Create a state token to prevent forgery
 	# Stored in session for later validation
 	# State is set to a randomly generate string of 32 characters, ints 
-	state = ''.join(random.choice(string.ascii_uppercase + string.digits)
-					for x in range(32))
-	session['state'] = state
-	return render_template('/auth/login.html', google_client_id=google_client_id, state=state)
-
+		state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+						for x in range(32))
+		session['state'] = state
+		return render_template('/auth/login.html', google_client_id=google_client_id, state=state)
 
 @auth.route('/gconnect', methods=['POST'])
 def gconnect():
