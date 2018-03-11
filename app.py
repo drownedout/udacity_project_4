@@ -6,6 +6,7 @@ from views.static import static
 from views.auth import auth
 from views.category import category
 from views.category_item import categoryItem
+from views.api import api
 
 # Intializing app
 app = Flask(__name__)
@@ -16,6 +17,7 @@ app.register_blueprint(static)
 app.register_blueprint(auth)
 app.register_blueprint(category)
 app.register_blueprint(categoryItem)
+app.register_blueprint(api)
 
 # Assets
 assets = Environment(app)

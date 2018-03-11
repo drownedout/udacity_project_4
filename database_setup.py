@@ -32,7 +32,16 @@ class Category(Base):
 	# Name column
 	name = Column(String(80), nullable=False)
 
+	@property
+	def serialize(self):
+		"""Returns serialized data"""
+		return {
+			'id': self.id,
+			'name': self.name
+		}
+
 class CategoryItem(Base):
+	# Sets the table name in SQL db
 	__tablename__ = 'category_item'
 
 	# ID Column (Primary Key)
@@ -48,6 +57,15 @@ class CategoryItem(Base):
 	# Creates foreign key relationship between Item and User
 	user_id = Column(Integer, ForeignKey('user.id'))
 	user = relationship(User)
+
+	@property
+	def serialize(self):
+		"""Returns serialized data"""
+		return {
+			'id': self.id,
+			'name': self.name,
+			'description': self.description
+		}
 
 
 engine = create_engine('sqlite:///categoryitem.db')
