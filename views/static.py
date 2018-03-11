@@ -12,8 +12,13 @@ database_session = DBSession()
 static = Blueprint('static', __name__)
 
 # Root, Home
+
+
 @static.route('/')
 def home():
-	categories = database_session.query(Category).all()
-	categoryItems = database_session.query(CategoryItem).limit(8).all()
-	return render_template('home.html', categories=categories, categoryItems=categoryItems)
+    categories = database_session.query(Category).all()
+    categoryItems = database_session.query(CategoryItem).limit(8).all()
+    return render_template(
+        'home.html',
+        categories=categories,
+        categoryItems=categoryItems)

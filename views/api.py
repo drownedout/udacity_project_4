@@ -11,12 +11,18 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 database_session = DBSession()
 
+
+# Categories JSON endpoint
+
 @api.route('/api/categories')
 def categoryJSON():
-	categories = database_session.query(Category).all()
-	return jsonify(categories = [category.serialize for category in categories])
+    categories = database_session.query(Category).all()
+    return jsonify(categories=[category.serialize for category in categories])
+
+
+# Category Items (Items) JSON endpoint
 
 @api.route('/api/items')
 def categoryItemJSON():
-	categoryItems = database_session.query(CategoryItem).all()
-	return jsonify(categoryItems = [item.serialize for item in categoryItems])
+    categoryItems = database_session.query(CategoryItem).all()
+    return jsonify(categoryItems=[item.serialize for item in categoryItems])
