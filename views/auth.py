@@ -1,7 +1,16 @@
 from flask import Blueprint, render_template, session, request, make_response
 from oauth2client.client import flow_from_clientsecrets, FlowExchangeError
 from util.keys import google_client_id
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from database_setup import Base, Category, CategoryItem, User
 import random, string, httplib2, json, requests
+
+engine = create_engine('sqlite:///categoryitem.db')
+Base.metadata.bind = engine
+
+DBSession = sessionmaker(bind=engine)
+database_session = DBSession()
 
 CLIENT_ID = json.loads(open('secrets.json', 'r').read())['web']['client_id']
 
@@ -9,7 +18,6 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
-
 	# Create a state token to prevent forgery
 	# Stored in session for later validation
 	# State is set to a randomly generate string of 32 characters, ints 
@@ -17,6 +25,7 @@ def login():
 					for x in range(32))
 	session['state'] = state
 	return render_template('/auth/login.html', google_client_id=google_client_id, state=state)
+
 
 @auth.route('/gconnect', methods=['POST'])
 def gconnect():
@@ -87,10 +96,12 @@ def gconnect():
 	session['picture'] = data['picture']
 	session['email'] = data['email']
 
-	output = ''
-	
-	print("done!")
-	return output
+	user_id = getUserID(data['email'])
+	if not user_id:
+		user_id = userNew(session)
+	session['user_id'] = user_id
+
+	return 'OK'
 
 @auth.route('/gdisconnect')
 def gdisconnect():
@@ -127,3 +138,24 @@ def gdisconnect():
 		response = make_response(json.dumps('Failed to disconnect'), 400)
 		response.headers['Content-Type'] = 'application/json'
 		return response
+
+# Helper functions
+def userNew(session):
+	newUser = User(name=session['username'], email=session['email'], picture=session['picture'])
+
+	database_session.add(newUser)
+	database_session.commit()
+	user = database_session.query(User).filter_by(id=newUser.id).one()
+	return user.id
+
+
+def getUserInfo(user_id):
+	user = database_session.query(User).filter_by(id=user_id).one()
+	return user
+
+def getUserID(email):
+	try:
+		user = session.query(User).filter_by(email=email).one()
+		return user.id
+	except:
+		return None

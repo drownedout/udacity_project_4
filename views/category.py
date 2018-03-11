@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Category, CategoryItem
+from database_setup import Base, Category, CategoryItem, User
 
 engine = create_engine('sqlite:///categoryitem.db')
 Base.metadata.bind = engine
