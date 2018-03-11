@@ -21,7 +21,11 @@ app.register_blueprint(api)
 
 # Assets
 assets = Environment(app)
-css = Bundle('css/style.css', 'css/normalize.css', 'css/fontawesome-all.min.css', output='gen/main.css')
+css = Bundle(
+    'css/style.css',
+    'css/normalize.css',
+    'css/fontawesome-all.min.css',
+    output='gen/main.css')
 assets.register('main', css)
 
 if __name__ == '__main__':

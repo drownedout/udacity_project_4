@@ -26,6 +26,7 @@ def categoryItemIndex():
 
 @categoryItem.route('/items/new', methods=['GET', 'POST'])
 def categoryItemNew():
+    # Checks to see if user is logged in, redirects user if not
     try:
         if session['username']:
             categories = database_session.query(Category).all()
@@ -33,6 +34,7 @@ def categoryItemNew():
                 id=session['user_id']).one()
 
             if request.method == 'POST':
+                # Pulls values from form
                 newCategoryItem = CategoryItem(
                     name=request.form['name'],
                     description=request.form['description'],
@@ -74,6 +76,7 @@ def categoryItemShow(category_id, item_id):
         'GET',
         'POST'])
 def categoryItemEdit(category_id, item_id):
+    # Checks if user is logged in, if not - redirect
     try:
         if session['username']:
             editCategoryItem = database_session.query(
@@ -116,17 +119,19 @@ def categoryItemEdit(category_id, item_id):
     '/categories/<int:category_id>/<int:item_id>/delete',
     methods=['POST'])
 def categoryItemDelete(category_id, item_id):
-    if not session['username']:
-        redirect(url_for('auth.login'))
-    deletedCategoryItem = database_session.query(
-        CategoryItem).filter_by(id=item_id).one()
-    if request.method == 'POST':
-        database_session.delete(deletedCategoryItem)
-        database_session.commit()
-        return redirect(url_for('categoryItem.categoryItemIndex'))
-    else:
-        return render_template(
-            'categoryItems/show.html',
-            category_id=category_id,
-            item_id=item_id,
-            CategoryItem=deletedCategoryItem)
+    try:
+        if session['username']:
+            deletedCategoryItem = database_session.query(
+                CategoryItem).filter_by(id=item_id).one()
+            if request.method == 'POST':
+                database_session.delete(deletedCategoryItem)
+                database_session.commit()
+                return redirect(url_for('categoryItem.categoryItemIndex'))
+            else:
+                return render_template(
+                    'categoryItems/show.html',
+                    category_id=category_id,
+                    item_id=item_id,
+                    CategoryItem=deletedCategoryItem)
+    except BaseException:
+        return redirect(url_for('auth.login'))

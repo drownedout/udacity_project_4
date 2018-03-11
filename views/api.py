@@ -16,7 +16,9 @@ database_session = DBSession()
 
 @api.route('/api/categories')
 def categoryJSON():
+	# Query DB
     categories = database_session.query(Category).all()
+    # Return JSON
     return jsonify(categories=[category.serialize for category in categories])
 
 

@@ -71,7 +71,11 @@ nav {
 
 .nav-list > li {
 	display: inline-block;
-	margin: 0 2rem;
+	margin: 0 1.5rem;
+}
+
+.nav-list > .btn {
+	margin-left: 1rem;
 }
 
 .nav-list > li > a {
@@ -213,6 +217,8 @@ nav {
 
 .box-title-container {
 	width: 85%;
+	display: flex;
+	align-items: center;
 }
 
 .box-title {
@@ -278,6 +284,7 @@ nav {
 
 .box-main > form {
 	padding: 1rem 2rem 1rem 2rem;
+	margin-left: 1rem;
 }
 
 .field {
