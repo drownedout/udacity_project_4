@@ -2,3 +2,5 @@
 __pycache__
 categoryitem.db
 .gitignore
+keys.py
+secrets.json

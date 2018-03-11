@@ -1,17 +1,19 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask
 from flask_assets import Bundle, Environment
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Category, CategoryItem
 
 # Importing routes
 from views.static import static
+from views.auth import auth
 from views.category import category
 from views.category_item import categoryItem
 
-# Intializing app, blueprints
+# Intializing app
 app = Flask(__name__)
+app.config.from_object('config')
+
+# Blueprints
 app.register_blueprint(static)
+app.register_blueprint(auth)
 app.register_blueprint(category)
 app.register_blueprint(categoryItem)
 

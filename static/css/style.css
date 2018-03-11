@@ -86,20 +86,6 @@ nav {
 	cursor: pointer;
 }
 
-.btn-login,
-.btn-blue,
-.btn-edit > a {
-	color: #fff;
-}
-
-.btn-delete > a {
-	color: #ff0000;
-}
-
-.btn-transparent > a {
-	color: #3645fc;
-}
-
 .btn-login {
 	background-color: #6a0efa;
 	border: 1px solid #5403d3;
@@ -150,6 +136,21 @@ nav {
 
 .btn-transparent:hover > a {
 	color: #1dabff;
+}
+
+.btn-login,
+.btn-blue,
+.btn-edit,
+.btn-login > a {
+	color: #fff;
+}
+
+.btn-delete > a {
+	color: #ff0000;
+}
+
+.btn-transparent > a {
+	color: #3645fc;
 }
 
 /** Box **/

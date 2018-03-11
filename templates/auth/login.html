@@ -1,0 +1,61 @@
+{# _app/templates/home.html_ #}
+
+{% extends "layout.html" %}
+{% block title %}{{Login}}{% endblock %}
+{% block body %}
+    {{ super() }}
+    <main>
+        <div class="container">
+        	<div class="box">
+        		<div class="box-header">
+        			<div class="box-title-container">
+    	    			<h3 class="box-title">Login</h3>
+        			</div>
+        			<button class="btn"><a href="{{url_for('static.home')}}">Back</a></button>
+        		</div>
+        		<div class="box-main">
+                    
+                </div>
+                <div class="button-row">
+                    <!-- Google Login Button -->
+                    <div id="signinButton">
+                      <span class="g-signin"
+                        data-scope="openid email"
+                        data-clientid="{{google_client_id}}"
+                        data-redirecturi="postmessage"
+                        data-accesstype="offline"
+                        data-cookiepolicy="single_host_origin"
+                        data-callback="signInCallback"
+                        data-approvalprompt="force">
+                      </span>
+                    </div>
+                </div>
+        	</div>
+        </div>
+    </main>
+    <script>
+        function signInCallback(authResult){
+            if (authResult['code']) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/gconnect?state={{state}}',
+                    processData: false,
+                    contentType: 'application/octet-stream; charset=utf-8',
+                    data: authResult['code'],
+                    success: function(result){
+                        if (result){
+                            alert("login successful");
+                            setTimeout(function(){
+                                window.location.href="/";
+                            },4000)
+                        } else if (authResult['error']) {
+                            console.log(authResult['error'])
+                        } else {
+                            console.log('No Response')
+                        }
+                    }
+                })
+            }
+        }
+    </script>
+{% endblock %}
